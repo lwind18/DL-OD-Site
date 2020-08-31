@@ -9,3 +9,5 @@ The idea of the Faster RCNN is:
 (4) Classification part. 
 Compared with other existed Faster RCNN with Keras, this one just has one training py and each section is easy to understand.
 You have two options to run the script. If you choose to run it at your local PC, you need to install Tensorflow-gpu to allow the computer using gpu to speed up. Or you can also use the scirpt on google Colab, which you don't need to install tensorflow-gpu.
+# The folder has three part. 
+# (1) image preparation part. (2) training model part. (3) test part.
