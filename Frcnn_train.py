@@ -1,9 +1,8 @@
 """
 FRCNN --- Object Detection with Keras
 This is the code to do object detection (Part 2).
-Training part have multiple steps: Config, RPN layer, Vgg-16 model (CNN), ROI pooling convolutional layer
-Classifier layer, Calculate IoU (Intersection of Union),
-it needs tensorflow-gpu
+Training part have multiple steps: Calculate IoU (Intersection of Union), Vgg-16 model(CNN), RPN layer, ROI pooling convolutional layer and Classifier layer
+This code fits local computer run (need tensorflow-gpu) or google colab. 
 07/31/2020
 """
 from __future__ import division
@@ -38,7 +37,6 @@ from keras.utils import generic_utils
 from keras.engine import Layer, InputSpec
 from keras import initializers, regularizers
 
-
 # Config setting
 class Config:
     def __init__(self):
@@ -65,7 +63,7 @@ class Config:
         self.im_size = 300
 
         # image channel-wise mean to subtract
-        self.img_channel_mean = [103.939, 116.779, 123.68]   # 图片通道像素值减多少
+        self.img_channel_mean = [103.939, 116.779, 123.68]   
         self.img_scaling_factor = 1.0
 
         # number of ROIs at once
@@ -156,7 +154,6 @@ def get_data(input_path):
                 class_mapping[key_to_switch] = val_to_switch
         return all_data, classes_count, class_mapping
 
-
 # Resize the image and augment the image (artifically increase the number of training data)
 def get_new_img_size(width, height, img_min_side=300):
     if width <= height:
@@ -168,7 +165,6 @@ def get_new_img_size(width, height, img_min_side=300):
         resized_width = int(f * width)
         resized_height = img_min_side
     return resized_width, resized_height
-
 
 def augment(img_data, config, augment=True):
     assert 'filepath' in img_data
@@ -1105,7 +1101,7 @@ def class_loss_cls(y_true, y_pred):
 #### The above is the archtecture of the Faster RCNN using Keras.
 
 
-#### double check, and training the model
+#### double check and train the model
 base_path = '/content/drive/My Drive/OD_ml'
 train_path = '/content/drive/My Drive/OD_ml/annotation.txt'  # Training data (annotation file)
 num_rois = 4  # Number of RoIs to process at once.
